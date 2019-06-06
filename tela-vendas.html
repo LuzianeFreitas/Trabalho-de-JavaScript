@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="img/favicon.png">
+    <title>Página - Cadastrar Departamento</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="menu-acima-navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-5 col-sm-12">
+                <a href="pagina-inicial-administrador.html"><img src="img/logo.png" alt="logo universidade" class="img-fluid"></a>
+            </div>
+            <div class="col-lg-5 col-md-2 col-sm-12"></div>
+            <div class="col-lg-4 col-md-5 col-sm-12 input-pesquisa">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Pesquisar..." aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-expand-md navbar-fixed-top">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="pagina-inicial-administrador.html">Principal <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDisciplinasLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Institutos
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDisciplinasLink">
+                                    <a class="dropdown-item" href="cadastrar-instituto.html">Cadastrar novo</a>
+                                    <a class="dropdown-item" href="lista-institutos.html">Lista institutos</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDepartamentosLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Departamentos
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDepartamentosLink">
+                                    <a class="dropdown-item" href="cadastrar-departamento.html">Cadastrar novo</a>
+                                    <a class="dropdown-item" href="lista-departamentos.html">Lista departamentos</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarCursosLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cursos
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarCursosLink">
+                                    <a class="dropdown-item" href="cadastrar-curso.html">Cadastrar novo</a>
+                                    <a class="dropdown-item" href="lista-cursos.html">Lista cursos</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDisciplinasMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Disciplinas
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDisciplinasMenuLink">
+                                    <a class="dropdown-item" href="cadastrar-disciplina.html">Cadastrar nova</a>
+                                    <a class="dropdown-item" href="cadastrar-matricula-aluno.html">Matricular aluno</a>
+                                    <a class="dropdown-item" href="cadastrar-nota-aluno-disciplina.html">Cadastrar nota de Aluno</a>
+                                    <a class="dropdown-item" href="lista-disciplinas.html">Listar disciplinas</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarProfessoresLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Professores
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarProfessoresLink">
+                                    <a class="dropdown-item" href="cadastrar-professor.html">Cadastrar novo</a>
+                                    <a class="dropdown-item" href="lista-professores.html">Lista professores</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarAlunosLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Alunos
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarAlunosLink">
+                                    <a class="dropdown-item" href="cadastrar-aluno.html">Cadastrar novo</a>
+                                    <a class="dropdown-item" href="lista-alunos.html">Lista alunos</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contato.html">Contato</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="duvida.html">Duvidas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<section id="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Novo Departamento</h2>
+            </div>
+        </div>
+
+
+        <form>
+            <div class="form-group row">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nome</label>
+                <div class="col-sm-10">
+                    <input type="nome" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Telefone</label>
+                <div class="col-sm-10">
+                    <input type="telefone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Universidade</label>
+                <div class="col-sm-10">
+                    <select class="form-control form-control-sm" id="exampleFormControlSelect1">
+                        <option>IFSULDEMINAS 1</option>
+                        <option>IFSULDEMINAS 2</option>
+                        <option>IFSULDEMINAS 3</option>
+                        <option>IFSULDEMINAS 4</option>
+                        <option>IFSULDEMINAS 5</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+
+</section>
+
+
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

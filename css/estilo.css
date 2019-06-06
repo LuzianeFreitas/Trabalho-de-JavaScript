@@ -1,0 +1,190 @@
+@font-face {
+	font-family: 'Open Sans';
+	src:  url('../fonts/OpenSans-Regular.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'Open Sans Light';
+	src:  url('../fonts/OpenSans-Light.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src:  url('../fonts/Roboto-Regular.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'Roboto Light';
+	src:  url('../fonts/Roboto-Light.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src:  url('../fonts/Montserrat-Regular.ttf') format('ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat Light';
+	src:  url('../fonts/Montserrat-Light.ttf') format('ttf');
+}
+
+body{
+	background: #eeeeee;
+	font-family: "Roboto Light", "Open Sans", Arial;
+}
+
+#container-menu{
+	background: #0C4AC8;
+}
+
+.container-fluid {
+	width: 100%;
+	margin: 0px !important;
+	padding: 0px !important;
+}
+
+.menu-acima-navbar{
+	/*display:flex;*/
+	height: 120px;
+	padding-top: 25px;
+	/*justify-content:center;
+	align-items:center;*/
+}
+
+.input-pesquisa{
+	margin-top: 15px;
+	height: 120px;
+}
+
+@media only screen and (max-width: 780px) {
+	.menu-acima-navbar{
+		display: none;
+	}
+}
+
+.input-pesquisa .btn{
+	width: 60px;
+}
+
+.btn{
+	background: #5c225f;
+	border: none;
+	color:#fff;
+}
+
+.btn:hover{
+	background: #199dd9;
+	color:#fff;
+	text-decoration: none;
+}
+
+.navbar{
+	width: 100%;
+	font-family: "Roboto Light";
+	background: #5c225f;
+	height: 60px;
+	margin-bottom: 40px;
+}
+
+.navbar-toggler{
+	color: #fff;
+}
+
+.navbar-collapse{
+	background: #5c225f;
+	text-align: center;
+	z-index: 40;
+}
+
+.nav-link{
+	width: 100%;
+}
+
+.navbar-nav a{
+	height: 60px;
+	line-height: 44px;
+	margin-right: 20px;
+}
+
+.navbar-nav a:hover{
+	background: #fff;
+	color: #000 !important;
+}
+
+.dropdown:hover{
+	background: #5c225f;
+	color: #fff;
+}
+
+.navbar-nav .active{
+	background: #fff;
+	color: #000 !important;
+}
+
+.navbar-nav .active:hover{
+	background: #fff;
+	color: #000 !important;
+}
+
+.nav-link{
+	color: #fff !important;
+}
+
+.dropdown-menu{
+	border:0;
+	margin: 0;
+	padding: 0;
+}
+.dropdown-menu a:hover{
+	background: #5c225f !important;
+	color: #fff !important;
+}
+
+.formato-container{
+	padding-top: 20px;
+}
+
+h1, h2{
+	font-family: "Montserrat Light";
+	margin-bottom: 40px;
+}
+
+p{
+	text-align: justify;
+	font-family: "Roboto Light";
+}
+
+#conteudo{
+	margin-bottom: 50px;
+}
+
+.modal-login{
+	background:#fff;
+	padding: 30px;
+	margin: 50px auto 0 auto;
+	width: 30%;
+}
+
+.label-invisivel{
+	visibility: hidden;
+}
+
+.botoes-login{
+	font-size: 1.05em;
+}
+
+.botoes-login a{
+	text-decoration:none;
+}
+
+.tabela-itens{
+	margin: 0 auto;
+	background: #fff;
+}
+
+.tabela-itens thead{
+	background: #5c225f;
+	color:#fff;
+
+}
+
