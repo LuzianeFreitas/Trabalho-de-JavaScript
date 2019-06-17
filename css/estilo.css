@@ -113,7 +113,7 @@ body{
 }
 
 .dropdown:hover{
-	background: #5c225f;
+	background: #c1c4c6;
 	color: #fff;
 }
 
@@ -137,7 +137,7 @@ body{
 	padding: 0;
 }
 .dropdown-menu a:hover{
-	background: #5c225f !important;
+	background: #c1c4c6 !important;
 	color: #000 !important;
 }
 
