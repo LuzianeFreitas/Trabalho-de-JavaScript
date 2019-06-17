@@ -1,17 +1,17 @@
 Front
-tela login: colocar imagem
-tela home: adaptar
-tela produto: adaptar
-tela funcionario: adaptar
-venda: adaptar
-lucro - home.
+tela login: colocar imagem - l
+tela home: adaptar - l
+tela produto: adaptar - r
+tela funcionario: adaptar - r
+venda: adaptar - l
+lucro - home. - l
 
 back
-classe estoque
-mostrar cargo do funcionário pelo salário
-login
-produto
-funcionario
-venda
-gerenciar estoque
-lucro
+classe estoque - r
+mostrar cargo do funcionário pelo salário - r
+login - l
+produto - r
+funcionario - r
+venda - l
+gerenciar estoque - r
+lucro - l
