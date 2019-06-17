@@ -81,7 +81,7 @@ body{
 .navbar{
 	width: 100%;
 	font-family: "Roboto Light";
-	background: #5c225f;
+	background: #fff;
 	height: 60px;
 	margin-bottom: 40px;
 }
@@ -91,7 +91,7 @@ body{
 }
 
 .navbar-collapse{
-	background: #5c225f;
+	background: #fff;
 	text-align: center;
 	z-index: 40;
 }
@@ -104,6 +104,7 @@ body{
 	height: 60px;
 	line-height: 44px;
 	margin-right: 20px;
+	color: #000;
 }
 
 .navbar-nav a:hover{
@@ -127,7 +128,7 @@ body{
 }
 
 .nav-link{
-	color: #fff !important;
+	color: #000 !important;
 }
 
 .dropdown-menu{
@@ -137,7 +138,7 @@ body{
 }
 .dropdown-menu a:hover{
 	background: #5c225f !important;
-	color: #fff !important;
+	color: #000 !important;
 }
 
 .formato-container{
