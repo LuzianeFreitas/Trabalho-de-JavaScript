@@ -96,6 +96,10 @@ body{
 	z-index: 40;
 }
 
+.table{
+	background: #fff;
+}
+
 .nav-link{
 	width: 100%;
 }

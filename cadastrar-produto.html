@@ -69,35 +69,34 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<form>
+				<form id="form-cadastro-produto">
 					<div class="form-group">
 						<label for="id">ID: </label>
-						<input type="text" class="form-control" id="id" disabled value="1" required>
+						<input type="text" class="form-control" id="id" name="id" disabled value="Carregando..." required>
 					</div>
 					<div class="form-group">
 						<label for="nome">Nome:</label>
-						<input type="text" class="form-control" id="nome" required>
+						<input type="text" class="form-control" id="nome" name="nome" required>
 					</div>
 					<div class="form-group">
 						<label for="dataDeValidade">Data de Validade:</label>
-						<input type="date" class="form-control" id="dataDeValidade" required>
+						<input type="date" class="form-control" id="dataDeValidade" name="dataDeValidade" required>
 					</div>
 					<div class="form-group">
 						<label for="taxaDeImposto">Taxa de Imposto (%):</label>
-						<input type="number" class="form-control" id="taxaDeImposto" required>
+						<input type="number" min="0" max="100" step="0.01" class="form-control" id="taxaDeImposto" name="taxaDeImposto" required>
 					</div>
 					<div class="form-group">
 						<label for="quantidade">Quantidade:</label>
-						<input type="number" class="form-control" id="quantidade" required>
+						<input type="number" min="0" class="form-control" id="quantidade" name="quantidade" required>
 					</div>
 					<div class="form-group">
 						<label for="preco">Preco (R$):</label>
-						<input type="number" class="form-control" id="preco" required>
+						<input type="number" step="0.01" min="0" class="form-control" id="preco" name="preco" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
 				</form>
 			</div>
-
 		</div>
 	</div>
 </section>
@@ -106,6 +105,32 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/estoque.js"></script>
+<script>
+	Estoque.inicializar();
+
+	$(document).ready(function(){
+	   $("#id").val(Estoque.idProduto);
+	});
+
+	$("#form-cadastro-produto").on("submit", function(event){
+	    event.preventDefault();
+	    let dadosForm = $(this).serializeArray();
+	    let data = new Date(dadosForm[1].value);
+        data = (data.getDate() + 1) + '/' + (data.getMonth() + 1) + '/' +  data.getFullYear();
+	    let produto = {
+	        id: Estoque.idProduto++,
+		    nome: dadosForm[0].value,
+		    dataDeValidade: data,
+		    taxaDeImposto: dadosForm[2].value,
+		    quantidade: dadosForm[3].value,
+		    preco: dadosForm[4].value
+	    };
+		Estoque.adicionarProduto(produto);
+
+		alert("Produto Cadastrado com Sucesso!");
+	});
+</script>
 </body>
 
 </html>

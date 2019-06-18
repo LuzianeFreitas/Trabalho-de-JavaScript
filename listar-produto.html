@@ -68,7 +68,7 @@
 <section id="conteudo">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="produtos-pagina">
 
 			</div>
 		</div>
@@ -79,6 +79,12 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/estoque.js"></script>
+	<script>
+        Estoque.inicializar();
+
+        document.getElementById("produtos-pagina").innerHTML = Estoque.listarProdutos();
+	</script>
 </body>
 
 </html>
