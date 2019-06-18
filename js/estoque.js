@@ -52,6 +52,15 @@ const Estoque = {
         return false;
     },
 
+    getProduto(id){
+        for(let i = 0; i < this.produtos.length; i++){
+            if(this.produtos[i].id === id){
+                return this.produtos[i];
+            }
+        }
+        return false;
+    },
+
     listarProdutos(){
         let stringTabela = "<table class='table'>";
         stringTabela += "<thead>";
@@ -62,19 +71,27 @@ const Estoque = {
         stringTabela += "<th>Taxa de Validade</th>";
         stringTabela += "<th>Quantidade</th>";
         stringTabela += "<th>Preço</th>";
+        stringTabela += "<th></th>";
+        stringTabela += "<th></th>";
         stringTabela += "</tr>";
         stringTabela += "</thead>";
 
         stringTabela += "<tbody>";
+        let data;
 
         for(let i = 0; i < this.produtos.length; i++){
             stringTabela += "<tr>";
             stringTabela += "<td>" + this.produtos[i].id + "</td>";
             stringTabela += "<td>" + this.produtos[i].nome + "</td>";
-            stringTabela += "<td>" + this.produtos[i].dataDeValidade + "</td>";
+            dataDeValidade = new Date(this.produtos[i].dataDeValidade);
+            dataDeValidade = (dataDeValidade.getDate() + 1) + '/' +
+                (dataDeValidade.getMonth() + 1) + '/' +  dataDeValidade.getFullYear();
+            stringTabela += "<td>" + dataDeValidade + "</td>";
             stringTabela += "<td>" + this.produtos[i].taxaDeImposto + "</td>";
             stringTabela += "<td>" + this.produtos[i].quantidade + "</td>";
             stringTabela += "<td>" + this.produtos[i].preco + "</td>";
+            stringTabela += "<td class='btn-editar'>Editar</td>";
+            stringTabela += "<td class='btn-excluir'>Excluir</td>";
             stringTabela += "</tr>";
         }
         stringTabela += "</tbody>";

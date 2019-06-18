@@ -116,12 +116,10 @@
 	$("#form-cadastro-produto").on("submit", function(event){
 	    event.preventDefault();
 	    let dadosForm = $(this).serializeArray();
-	    let data = new Date(dadosForm[1].value);
-        data = (data.getDate() + 1) + '/' + (data.getMonth() + 1) + '/' +  data.getFullYear();
 	    let produto = {
 	        id: Estoque.idProduto++,
 		    nome: dadosForm[0].value,
-		    dataDeValidade: data,
+		    dataDeValidade: dadosForm[1].value,
 		    taxaDeImposto: dadosForm[2].value,
 		    quantidade: dadosForm[3].value,
 		    preco: dadosForm[4].value
