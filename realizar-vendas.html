@@ -5,8 +5,8 @@
     <title>Apex Sistemas - Realização de vendas</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
 <body>
@@ -74,32 +74,32 @@
             </div>
     
     
-            <form>
+            <form id="form-produto-vendido">
                 <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Nome produto</label>
-                    <div class="col-sm-10">
-                        <input type="nome-produto" class="form-control form-control-sm" id="colFormLabelSm nome-produto" placeholder="">
+                    <label for="produtoSelecionado" class="col-sm-2 col-form-label col-form-label-sm">Nome produto</label>
+                    <div class="col-sm-10" id="listaProdutosVendas">
+                        
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Quantidade</label>
+                    <label for="quantidade" class="col-sm-2 col-form-label col-form-label-sm">Quantidade</label>
                     <div class="col-sm-10">
-                        <input type="quantidade" class="form-control form-control-sm" id="colFormLabelSm quantidade" placeholder="">
+                        <input type="quantidade" class="form-control form-control-sm" id="quantidade" name="quantidade" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Preço</label>
+                    <label for="preco" class="col-sm-2 col-form-label col-form-label-sm">Preço</label>
                     <div class="col-sm-10">
-                        <input type="preco" class="form-control form-control-sm" id="colFormLabelSm preco" placeholder="">
+                        <input type="preco" class="form-control form-control-sm" id="preco" name="preco" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Funcionario Responsável</label>
+                    <label for="funcionario" class="col-sm-2 col-form-label col-form-label-sm">Funcionario Responsável</label>
                     <div class="col-sm-10">
-                        <input type="funcionario-responsavel" class="form-control form-control-sm" id="colFormLabelSm funcionario-responsavel" placeholder="">
+                        <input type="funcionario" class="form-control form-control-sm" id="funcionario" name="funcionario" placeholder="">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary salvar-venda">Salvar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
         </div>
         
@@ -109,6 +109,27 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/estoque.js"></script>
+    <script>
+        Estoque.inicializar();
+        Estoque.inicializarVendas();
+
+        document.getElementById("listaProdutosVendas").innerHTML = Estoque.listarSelect();
+
+        $("#form-produto-vendido").on("submit", function(event){
+            event.preventDefault();
+            let dados = $(this).serializeArray();
+            let produtoVendido = {
+                produtoSelecionado: dados[0].value,
+                quantidade: dados[1].value,
+                preco: dados[2].value,
+                funcionario: dados[3].value
+            };
+            Estoque.adicionaProdutoVendido(produtoVendido);
+
+            alert("Produto Vendido com sucesso!");
+	    });
+    </script>
 </body>
 
 </html>

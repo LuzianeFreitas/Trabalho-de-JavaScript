@@ -5,8 +5,8 @@
     <title>Apex Sistemas - Listar vendas</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
 <body>
@@ -66,31 +66,27 @@
 
     <!-- Inicio Conteúdo -->
     <section id="conteudo">
-            <div class="container">
-                <table class="table tabela-itens">
-                    <thead>
-                    <tr>
-                        <th>Produto vendido</th>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                        <th>Preço</th>
-                        <th>funcionario Responsável pela venda</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    
-                    </tbody>
-                </table>
-        
-                
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="produto-venda">
+    
+                </div>
             </div>
-        
-        </section>
+        </div>
+    </section>
     <!-- Fim conteúdo -->
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/estoque.js"></script>
+    <script>
+        Estoque.inicializar();
+        Estoque.inicializarVendas();
+
+        document.getElementById("produto-venda").innerHTML = Estoque.listarProdutosVendidos();
+
+    </script>
 </body>
 
 </html>
