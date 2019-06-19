@@ -20,8 +20,8 @@ const Venda = {
         return true;
     },
 
-    adicionarProdutoVendido(produtoVenda){
-        this.produtoVenda.push(produtoVenda);
+    adicionarProdutoVendido(produtoVendido){
+        this.produtoVenda.push(produtoVendido);
         this.salvarAtributosNoLocalStorage();
 
         return true;

@@ -64,71 +64,62 @@
     </div>
     <!-- Fim Navbar -->
 
-    <!-- Inicio Conteúdo -->
     <section id="conteudo">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <h2>Nova Venda</h2>
+                <div class="col-md-12">
+                    <form id="form-produto-vendido">
+                        <div class="form-group">
+                            <label for="produtoSelecionado">Nome produto: </label>
+                            <input type="text" class="form-control" id="produtoSelecionado" name="produtoSelecionado" required>
+                            <!-- <select class='form-control' id="listaProdutosVendas">
+                                <option id="produtoSelecionado"></option>
+                            </select> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="quantidade">Quantidade:</label>
+                            <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="preco">Preço:</label>
+                            <input type="number" class="form-control" id="preco" name="preco" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="funcionario">Funcionário responsável:</label>
+                            <input type="text" class="form-control" id="funcionario" name="funcionario" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar venda</button>
+                    </form>
                 </div>
             </div>
-    
-    
-            <form id="form-produto-vendido">
-                <div class="form-group row">
-                    <label for="produtoSelecionado" class="col-sm-2 col-form-label col-form-label-sm">Nome produto</label>
-                    <div class="col-sm-10" id="listaProdutosVendas">
-                        
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="quantidade" class="col-sm-2 col-form-label col-form-label-sm">Quantidade</label>
-                    <div class="col-sm-10">
-                        <input type="quantidade" class="form-control form-control-sm" id="quantidade" name="quantidade" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="preco" class="col-sm-2 col-form-label col-form-label-sm">Preço</label>
-                    <div class="col-sm-10">
-                        <input type="preco" class="form-control form-control-sm" id="preco" name="preco" placeholder="">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="funcionario" class="col-sm-2 col-form-label col-form-label-sm">Funcionario Responsável</label>
-                    <div class="col-sm-10">
-                        <input type="funcionario" class="form-control form-control-sm" id="funcionario" name="funcionario" placeholder="">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </form>
         </div>
-        
     </section>
-    <!-- Fim conteúdo -->
+    <!-- Inicio Conteúdo -->
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/estoque.js"></script>
     <script type="text/javascript" src="js/venda.js"></script>
+    
     <script>
-        Estoque.inicializar();
         Venda.inicializarVenda();
 
-        document.getElementById("listaProdutosVendas").innerHTML = Estoque.listarSelect();
+        //document.getElementById("listaProdutosVendas").innerHTML = Estoque.listarSelect();
 
         $("#form-produto-vendido").on("submit", function(event){
             event.preventDefault();
-            let dados = $(this).serializeArray();
+            let dadosForm = $(this).serializeArray();
             let produtoVendido = {
-                produtoSelecionado: dados[0].value,
-                quantidade: dados[1].value,
-                preco: dados[2].value,
-                funcionario: dados[3].value
+                produtoSelecionado: dadosForm[0].value,
+                quantidade: dadosForm[1].value,
+                preco: dadosForm[2].value,
+                funcionario: dadosForm[3].value
             };
-            Estoque.adicionarProdutoVendido(produtoVendido);
-
-            alert("Produto Vendido com sucesso!");
+            Venda.adicionarProdutoVendido(produtoVendido);
+            alert("Produto cadastrado com sucesso!");
+            
 	    });
     </script>
 </body>
