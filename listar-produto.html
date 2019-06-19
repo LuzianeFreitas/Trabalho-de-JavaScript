@@ -86,6 +86,8 @@
         document.getElementById("produtos-pagina").innerHTML = Estoque.listarProdutos();
 
         $(".btn-excluir").on("click", function(){
+            let resposta = confirm("Deseja realmente excluir esse registro?");
+            if(!resposta) return false;
             let id = parseInt($(this).parent().children().text()[0]);
             $(this).parent().fadeOut( "slow", function(){
                 Estoque.removerProduto(id);

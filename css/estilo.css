@@ -78,6 +78,10 @@ body{
 	text-decoration: none;
 }
 
+.btn-editar, .btn-excluir{
+	cursor:pointer;
+}
+
 .navbar{
 	width: 100%;
 	font-family: "Roboto Light";
