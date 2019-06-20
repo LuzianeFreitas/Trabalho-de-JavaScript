@@ -94,4 +94,13 @@ const Funcionario = {
 
         return stringTabela;
     },
+
+    getSelectFuncionarios(){
+        let stringSelect = "";
+        for(let i = 0; i < this.funcionarios.length; i++){
+            stringSelect += "<option value='" + this.funcionarios[i].nome + "'>" + this.funcionarios[i].nome + "</option>";
+        }
+
+        return stringSelect;
+    }
 };

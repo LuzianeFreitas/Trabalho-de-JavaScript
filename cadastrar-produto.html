@@ -94,6 +94,11 @@
 						<label for="preco">Preco (R$):</label>
 						<input type="number" step="0.01" class="form-control" id="preco" name="preco" required>
 					</div>
+					<div class="form-group div-select-funcionario">
+						<label for="funcionario-cadastro">Funcionário responsável pelo Cadastro:</label>
+						<select id='funcionario-cadastro' name='funcionario-cadastro'>
+						</select>
+					</div>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
 					<button type="reset" class="btn btn-primary btn-limpar">Limpar</button>
 				</form>
@@ -106,9 +111,11 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/funcionarios.js"></script>
 <script type="text/javascript" src="js/estoque.js"></script>
 <script>
 	Estoque.inicializar();
+	Funcionario.inicializar();
 
     $(".btn-limpar").on("click", function(event){
         event.preventDefault();
@@ -118,6 +125,11 @@
 
 	$(document).ready(function(){
 	   $("#id").val(Estoque.idProduto);
+	   if(Funcionario.funcionarios.length === 0){
+	       alert("É necessário ter cadastrado pelo menos 1 funcionário antes de cadastrar um novo produto!");
+	       location.href = "cadastrar-funcionario.html";
+	   }
+	   $("#funcionario-cadastro").html(Funcionario.getSelectFuncionarios());
 	});
 
 	$("#form-cadastro-produto").on("submit", function(event){
@@ -129,7 +141,8 @@
 		    dataDeValidade: dadosForm[1].value,
 		    taxaDeImposto: dadosForm[2].value,
 		    quantidade: dadosForm[3].value,
-		    preco: dadosForm[4].value
+		    preco: dadosForm[4].value,
+		    funcionarioCadastro: dadosForm[5].value,
 	    };
 		Estoque.adicionarProduto(produto);
 

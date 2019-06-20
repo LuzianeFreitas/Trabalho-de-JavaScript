@@ -71,6 +71,7 @@ const Estoque = {
         stringTabela += "<th>Taxa de Validade</th>";
         stringTabela += "<th>Quantidade</th>";
         stringTabela += "<th>Preço</th>";
+        stringTabela += "<th>Func. Cadastro</th>";
         stringTabela += "<th></th>";
         stringTabela += "<th></th>";
         stringTabela += "</tr>";
@@ -90,6 +91,7 @@ const Estoque = {
             stringTabela += "<td>" + this.produtos[i].taxaDeImposto + "</td>";
             stringTabela += "<td>" + this.produtos[i].quantidade + "</td>";
             stringTabela += "<td>" + this.produtos[i].preco + "</td>";
+            stringTabela += "<td>" + this.produtos[i].funcionarioCadastro + "</td>";
             stringTabela += "<td class='btn-editar'><i class='fas fa-edit'></i></td>";
             stringTabela += "<td class='btn-excluir'><i class='fas fa-trash'></i></td>";
             stringTabela += "</tr>";

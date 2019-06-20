@@ -94,6 +94,11 @@
 						<label for="preco">Preco (R$):</label>
 						<input type="number" step="0.01" min="0" class="form-control" id="preco" name="preco" required>
 					</div>
+					<div class="form-group div-select-funcionario">
+						<label for="funcionario-cadastro">Funcionário responsável pelo Cadastro:</label>
+						<select id='funcionario-cadastro' name='funcionario-cadastro'>
+						</select>
+					</div>
 					<button type="submit" class="btn btn-primary">Atualizar</button>
 					<a href="listar-produto.html"><button type="button" class="btn btn-primary">Voltar</button></a>
 				</form>
@@ -106,13 +111,14 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/funcionarios.js"></script>
 <script type="text/javascript" src="js/estoque.js"></script>
 <script>
 	Estoque.inicializar();
+	Funcionario.inicializar();
 	let id = 1;
 	$(document).ready(function(){
 	    id = parseInt(localStorage.getItem("produtoEditado"));
-	    console.log(id);
 	    let produto = Estoque.getProduto(id);
 	    $("#id").val(id);
         $("#nome").val(produto.nome);
@@ -120,6 +126,12 @@
         $("#taxaDeImposto").val(produto.taxaDeImposto);
         $("#quantidade").val(produto.quantidade);
         $("#preco").val(produto.preco);
+        if(Funcionario.funcionarios.length === 0){
+            alert("É necessário ter cadastrado pelo menos 1 funcionário antes de editar um produto!");
+            location.href = "cadastrar-funcionario.html";
+        }
+        $("#funcionario-cadastro").html(Funcionario.getSelectFuncionarios());
+        $("#funcionario-cadastro").val(produto.funcionarioCadastro);
 	});
 
 	$("#form-editar-produto").on("submit", function(event){
@@ -131,7 +143,8 @@
 		    dataDeValidade: dadosForm[1].value,
 		    taxaDeImposto: dadosForm[2].value,
 		    quantidade: dadosForm[3].value,
-		    preco: dadosForm[4].value
+		    preco: dadosForm[4].value,
+            funcionarioCadastro: dadosForm[5].value
 	    };
 
         Estoque.editarProduto(id, produto);
