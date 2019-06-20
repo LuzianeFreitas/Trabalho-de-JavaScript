@@ -69,31 +69,31 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<form>
+				<form id="form-cadastro-funcionario">
 					<div class="form-group">
 						<label for="id">ID: </label>
-						<input type="text" class="form-control" id="id" disabled value="1" required>
+						<input type="text" class="form-control" id="id" name="id" disabled value="Carregando..." required>
 					</div>
 					<div class="form-group">
 						<label for="nome">Nome:</label>
-						<input type="text" class="form-control" id="nome" required>
+						<input type="text" class="form-control" id="nome" name="nome" required>
 					</div>
 					<div class="form-group">
 						<label for="endereco">Endereço:</label>
-						<input type="text" class="form-control" id="endereco" required>
+						<input type="text" class="form-control" id="endereco" name="endereco" required>
 					</div>
 					<div class="form-group">
 						<label for="cargo">Cargo:</label>
-						<input type="text" class="form-control" id="cargo" required>
+						<input type="text" class="form-control" id="cargo" name="cargo" value="Vendedor" required disabled>
 					</div>
 					<div class="form-group">
-						<label for="quantidade">Salário:</label>
-						<input type="number" class="form-control" id="quantidade" required>
+						<label for="salario">Salário:</label>
+						<input type="number" min="1000" class="form-control" id="salario" name="salario" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Cadastrar</button>
+					<button type="reset" class="btn btn-primary btn-limpar">Limpar</button>
 				</form>
 			</div>
-
 		</div>
 	</div>
 </section>
@@ -102,6 +102,47 @@
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/funcionarios.js"></script>
+<script>
+    Funcionario.inicializar();
+
+    $(".btn-limpar").on("click", function(event){
+        event.preventDefault();
+        $("#form-cadastro-funcionario")[0].reset();
+        $("#id").val(Funcionario.idFuncionario);
+    });
+
+    $(document).ready(function(){
+        $("#id").val(Funcionario.idFuncionario);
+    });
+
+    $("#salario").on("keyup", function(event) {
+        if($(this).val() === "") return false;
+		let salario = parseFloat($(this).val());
+		if(salario < 5000){
+            $("#cargo").val("Vendedor");
+		}else if(salario < 10000){
+            $("#cargo").val("Supervisor");
+		}else{
+            $("#cargo").val("Gerente");
+		}
+    });
+
+    $("#form-cadastro-funcionario").on("submit", function(event){
+        event.preventDefault();
+        let dadosForm = $(this).serializeArray();
+        let funcionario = {
+            id: Funcionario.idFuncionario++,
+            nome: dadosForm[0].value,
+            endereco: dadosForm[1].value,
+            cargo: $("#cargo").val(),
+            salario: dadosForm[2].value
+        };
+        Funcionario.adicionar(funcionario);
+
+        alert("Funcionário Cadastrado com Sucesso!");
+    });
+</script>
 </body>
 
 </html>

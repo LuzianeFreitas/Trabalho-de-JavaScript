@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="icon" href="img/logo-menu.png">
-	<title>Apex Sistemas - Listar Funcionários</title>
+	<title>Apex Sistemas - Editar Produtos</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
@@ -68,8 +68,31 @@
 <section id="conteudo">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12" id="funcionarios-pagina">
-
+			<div class="col-md-12">
+				<form id="form-editar-funcionario">
+					<div class="form-group">
+						<label for="id">ID: </label>
+						<input type="text" class="form-control" id="id" name="id" disabled value="Carregando..." required>
+					</div>
+					<div class="form-group">
+						<label for="nome">Nome:</label>
+						<input type="text" class="form-control" id="nome" name="nome" required>
+					</div>
+					<div class="form-group">
+						<label for="endereco">Endereço:</label>
+						<input type="text" class="form-control" id="endereco" name="endereco" required>
+					</div>
+					<div class="form-group">
+						<label for="cargo">Cargo:</label>
+						<input type="text" class="form-control" id="cargo" name="cargo" value="Vendedor" required disabled>
+					</div>
+					<div class="form-group">
+						<label for="salario">Salário:</label>
+						<input type="number" min="1000" class="form-control" id="salario" name="salario" required>
+					</div>
+					<button type="submit" class="btn btn-primary">Atualizar</button>
+					<a href="listar-funcionario.html"><button type="button" class="btn btn-primary">Voltar</button></a>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -81,23 +104,44 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/funcionarios.js"></script>
 <script>
-    Funcionario.inicializar();
+	Funcionario.inicializar();
+	let id = 1;
+	$(document).ready(function(){
+	    id = parseInt(localStorage.getItem("funcionarioEditado"));
+	    let funcionario = Funcionario.getFuncionario(id);
+	    $("#id").val(id);
+        $("#nome").val(funcionario.nome);
+        $("#endereco").val(funcionario.endereco);
+        $("#cargo").val(funcionario.cargo);
+        $("#salario").val(funcionario.salario);
+	});
 
-    document.getElementById("funcionarios-pagina").innerHTML = Funcionario.listarFuncionarios();
+    $("#salario").on("keyup", function(event) {
+        if($(this).val() === "") return false;
+        let salario = parseFloat($(this).val());
+        if(salario < 5000){
+            $("#cargo").val("Vendedor");
+        }else if(salario < 10000){
+            $("#cargo").val("Supervisor");
+        }else{
+            $("#cargo").val("Gerente");
+        }
+    });
 
-    $(".btn-excluir").on("click", function(){
-        let resposta = confirm("Deseja realmente excluir esse registro?");
-        if(!resposta) return false;
-        let id = parseInt($(this).parent().children().text()[0]);
-        $(this).parent().fadeOut( "slow", function(){
-            Funcionario.remover(id);
-        });
-    });
-    $(".btn-editar").on("click", function(){
-        let id = $(this).parent().children().text()[0];
-        localStorage.setItem("funcionarioEditado", id);
-        location.href = "editar-funcionario.html";
-    });
+	$("#form-editar-funcionario").on("submit", function(event){
+	    event.preventDefault();
+	    let dadosForm = $(this).serializeArray();
+        let funcionario = {
+	        id: id,
+		    nome: dadosForm[0].value,
+		    endereco: dadosForm[1].value,
+		    cargo: $("#cargo").val(),
+		    salario: dadosForm[2].value,
+	    };
+
+        Funcionario.editar(id, funcionario);
+		alert("Funcionário Editado com Sucesso!");
+	});
 </script>
 </body>
 
