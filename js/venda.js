@@ -1,36 +1,61 @@
 const Venda = {
-    produtoVenda: [],
+    idVenda: 1,
+    vendas: [],
 
-    inicializarVenda(){
-        if(localStorage.getItem("produtoVenda") != null){
+    inicializar(){
+        if(localStorage.getItem("vendas") != null){
             this.carregarAtributosDoLocalStorage();
         }
         return true;
     },
 
     carregarAtributosDoLocalStorage(){
-        this.produtoVenda = JSON.parse(localStorage.getItem("produtoVenda"));
+        this.vendas = JSON.parse(localStorage.getItem("vendas"));
+        this.idVenda = JSON.parse(localStorage.getItem("idVenda"));
 
         return true;
     },
 
     salvarAtributosNoLocalStorage(){
-        localStorage.setItem("produtoVenda", JSON.stringify(this.produtoVenda));
+        localStorage.setItem("vendas", JSON.stringify(this.vendas));
+        localStorage.setItem("idVenda", JSON.stringify(this.idVenda));
 
         return true;
     },
 
-    adicionarProdutoVendido(produtoVendido){
-        this.produtoVenda.push(produtoVendido);
+    adicionarProduto(produto){
+        this.vendas.push(produto);
         this.salvarAtributosNoLocalStorage();
 
         return true;
+    },
+
+    removerVenda(id){
+        for(let i = 0; i < this.vendas.length; i++){
+            if(this.vendas[i].id === id){
+                this.vendas.splice(i, 1);
+                this.salvarAtributosNoLocalStorage();
+                return true;
+            }
+        }
+        return false;
+    },
+
+    getProdutoVendido(id){
+        for (let i = 0; i < this.vendas.length; i++) {
+            if(this.vendas[i].id === id){
+                return this.vendas[i];
+            }
+            
+        }
+        return false;
     },
 
     listarProdutosVendidos(){
         let stringTabela = "<table class='table'>";
         stringTabela += "<thead>";
         stringTabela += "<tr>";
+        stringTabela += "<th>id</th>";
         stringTabela += "<th>Nome produto</th>";
         stringTabela += "<th>Quantidade</th>";
         stringTabela += "<th>Preço</th>";
@@ -41,14 +66,14 @@ const Venda = {
         stringTabela += "</thead>";
 
         stringTabela += "<tbody>";
-        let data;
 
-        for(let i = 0; i < this.produtoVenda.length; i++){
+        for(let i = 0; i < this.vendas.length; i++){
             stringTabela += "<tr>";
-            stringTabela += "<td>" + this.produtoVenda[i].produtoSelecionado + "</td>";
-            stringTabela += "<td>" + this.produtoVenda[i].quantidade + "</td>";
-            stringTabela += "<td>" + this.produtoVenda[i].preco + "</td>";
-            stringTabela += "<td>" + this.produtoVenda[i].funcionario + "</td>";
+            stringTabela += "<td>" + this.vendas[i].id + "</td>";
+            stringTabela += "<td>" + this.vendas[i].nome + "</td>";
+            stringTabela += "<td>" + this.vendas[i].quantidade + "</td>";
+            stringTabela += "<td>" + this.vendas[i].preco + "</td>";
+            stringTabela += "<td>" + this.vendas[i].funcionario + "</td>";
             stringTabela += "<td class='btn-editar'>Editar</td>";
             stringTabela += "<td class='btn-excluir'>Excluir</td>";
             stringTabela += "</tr>";

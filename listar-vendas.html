@@ -79,12 +79,29 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/estoque.js"></script>
     <script type="text/javascript" src="js/venda.js"></script>
+    <script type="text/javascript" src="js/estoque.js"></script>
+    <script type="text/javascript" src="js/funcionarios.js"></script>
     <script>
-        Venda.inicializarVenda();
+        Venda.inicializar();
+        Funcionario.inicializar();
+        Venda.inicializar();
 
         document.getElementById("produto-venda").innerHTML = Venda.listarProdutosVendidos();
+
+        $(".btn-excluir").on("click", function(){
+            let resposta = confirm("Deseja realmente excluir esse registro?");
+            if(!resposta) return false;
+            let id = parseInt($(this).parent().children().text()[0]);
+            $(this).parent().fadeOut( "slow", function(){
+                Venda.removerVenda(id);
+            });
+        });
+        // $(".btn-editar").on("click", function(){
+        //     let id = $(this).parent().children().text()[0];
+        //     localStorage.setItem("produtoEditado", id);
+        //     location.href = "editar-produto.html";
+        // });
 
     </script>
 </body>

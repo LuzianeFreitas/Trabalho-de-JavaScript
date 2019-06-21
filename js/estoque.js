@@ -41,6 +41,17 @@ const Estoque = {
         return false;
     },
 
+    atualizarProduto(produto){
+        for(let i = 0; i < this.produtos.length; i++){
+            if(this.produtos[i].nome === produto.nome){
+                this.produtos[i].quantidade -= produto.quantidade;
+                this.salvarAtributosNoLocalStorage();
+                return true;
+            }
+        }
+        return false;
+    },
+
     editarProduto(id, produto){
         for(let i = 0; i < this.produtos.length; i++){
             if(this.produtos[i].id === id){
@@ -102,13 +113,11 @@ const Estoque = {
         return stringTabela;
     },
 
-    listarSelect() {
-        let stringSelect = "<select class='form-control'>";
+    getSelectProdutos(){
+        let stringSelect = "";
         for(let i = 0; i < this.produtos.length; i++){
-            stringSelect += "<option id='produtoSelecionado'>" + this.produtos[i].nome + "</option>";
+            stringSelect += "<option value='" + this.produtos[i].nome + "'>" + this.produtos[i].nome + "</option>";
         }
-
-        stringSelect += "</select>";
 
         return stringSelect;
     }

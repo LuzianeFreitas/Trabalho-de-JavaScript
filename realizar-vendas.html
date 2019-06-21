@@ -70,11 +70,13 @@
                 <div class="col-md-12">
                     <form id="form-produto-vendido">
                         <div class="form-group">
-                            <label for="produtoSelecionado">Nome produto: </label>
-                            <input type="text" class="form-control" id="produtoSelecionado" name="produtoSelecionado" required>
-                            <!-- <select class='form-control' id="listaProdutosVendas">
-                                <option id="produtoSelecionado"></option>
-                            </select> -->
+                            <label for="id">ID: </label>
+                            <input type="text" class="form-control" id="id" name="id" disabled value="Carregando..." required>
+                        </div>
+                        <div class="form-group div-select-produto">
+                            <label for="nome">Nome produto:</label>
+                            <select id='nome' name='nome'>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="quantidade">Quantidade:</label>
@@ -84,44 +86,69 @@
                             <label for="preco">Preço:</label>
                             <input type="number" class="form-control" id="preco" name="preco" required>
                         </div>
-                        <div class="form-group">
-                            <label for="funcionario">Funcionário responsável:</label>
-                            <input type="text" class="form-control" id="funcionario" name="funcionario" required>
+                        <div class="form-group div-select-funcionario">
+                            <label for="funcionario">Funcionário responsável pela Venda:</label>
+                            <select id='funcionario' name='funcionario'>
+                            </select>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Salvar venda</button>
+                        <button type="submit" class="btn btn-primary">Vender</button>
+                        <button type="reset" class="btn btn-primary btn-limpar">Limpar</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Inicio Conteúdo -->
+
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/estoque.js"></script>
     <script type="text/javascript" src="js/venda.js"></script>
+    <script type="text/javascript" src="js/estoque.js"></script>
+    <script type="text/javascript" src="js/funcionarios.js"></script>
+    
     
     <script>
-        Venda.inicializarVenda();
+        Estoque.inicializar();
+        Funcionario.inicializar();
+        Venda.inicializar();
 
-        //document.getElementById("listaProdutosVendas").innerHTML = Estoque.listarSelect();
+        $(".btn-limpar").on("click", function(event){
+            event.preventDefault();
+            $("#form-produto-vendido")[0].reset();
+            $("#id").val(Venda.idVenda);
+        });
+
+
+        $(document).ready(function(){
+            $("#id").val(Venda.idVenda);
+            if(Estoque.produtos.length === 0){
+                alert("É necessario ter cadastrado pelo menos um produto no estoque!");
+                location.href = "cadastrar-produto.html";
+            }
+            $("#nome").html(Estoque.getSelectProdutos());
+            $("#funcionario").html(Funcionario.getSelectFuncionarios());
+        });
 
         $("#form-produto-vendido").on("submit", function(event){
             event.preventDefault();
-            let dadosForm = $(this).serializeArray();
-            let produtoVendido = {
-                produtoSelecionado: dadosForm[0].value,
-                quantidade: dadosForm[1].value,
-                preco: dadosForm[2].value,
-                funcionario: dadosForm[3].value
+            let dadosFormulario = $(this).serializeArray();
+            let produtoVenda = {
+                id: Venda.idVenda++,
+                nome: dadosFormulario[0].value,
+                quantidade: dadosFormulario[1].value,
+                preco: dadosFormulario[2].value,
+                funcionario: dadosFormulario[3].value,
             };
-            Venda.adicionarProdutoVendido(produtoVendido);
-            alert("Produto cadastrado com sucesso!");
-            
-	    });
+            Venda.adicionarProduto(produtoVenda);
+            Estoque.atualizarProduto(produtoVenda);
+            //Estoque.atualizaProdutosNoEstoque(produtoVenda);
+            alert("Produto vendido com sucesso!");
+        });
+        
     </script>
+
 </body>
 
 </html>

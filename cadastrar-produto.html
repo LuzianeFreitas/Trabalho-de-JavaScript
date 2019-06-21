@@ -134,7 +134,7 @@
 
 	$("#form-cadastro-produto").on("submit", function(event){
 	    event.preventDefault();
-	    let dadosForm = $(this).serializeArray();
+		let dadosForm = $(this).serializeArray();
 	    let produto = {
 	        id: Estoque.idProduto++,
 		    nome: dadosForm[0].value,
@@ -143,7 +143,7 @@
 		    quantidade: dadosForm[3].value,
 		    preco: dadosForm[4].value,
 		    funcionarioCadastro: dadosForm[5].value,
-	    };
+		};
 		Estoque.adicionarProduto(produto);
 
 		alert("Produto Cadastrado com Sucesso!");
