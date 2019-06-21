@@ -1,5 +1,6 @@
 const Venda = {
     idVenda: 1,
+    lucro: 0,
     vendas: [],
 
     inicializar(){
@@ -12,6 +13,7 @@ const Venda = {
     carregarAtributosDoLocalStorage(){
         this.vendas = JSON.parse(localStorage.getItem("vendas"));
         this.idVenda = JSON.parse(localStorage.getItem("idVenda"));
+        this.lucro = JSON.parse(localStorage.getItem("lucro"));
 
         return true;
     },
@@ -19,6 +21,7 @@ const Venda = {
     salvarAtributosNoLocalStorage(){
         localStorage.setItem("vendas", JSON.stringify(this.vendas));
         localStorage.setItem("idVenda", JSON.stringify(this.idVenda));
+        localStorage.setItem("lucro", JSON.stringify(this.lucro));
 
         return true;
     },
@@ -37,6 +40,15 @@ const Venda = {
                 this.salvarAtributosNoLocalStorage();
                 return true;
             }
+        }
+        return false;
+    },
+
+    calculaLucroEmpresa(){
+        for(let i = 0; i < this.vendas.length; i++){
+            this.lucro = ((this.vendas[i].quantidade) * (this.vendas[i].preco));
+            this.salvarAtributosNoLocalStorage();
+            return true;
         }
         return false;
     },
@@ -82,5 +94,10 @@ const Venda = {
         stringTabela += "</table>";
 
         return stringTabela;
+    },
+
+    getLucro(){
+        let stringText = "<label> Lucro da Empresa: R$" + this.lucro + "<label>";
+        return stringText;
     }
 };

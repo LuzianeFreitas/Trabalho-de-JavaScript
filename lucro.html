@@ -2,11 +2,11 @@
 <html>
 <head>
     <link rel="icon" href="img/logo-menu.png">
-    <title>Apex Sistemas - Realização de vendas</title>
+    <title>Apex Sistemas - Lucro</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
 <body>
@@ -64,42 +64,18 @@
     </div>
     <!-- Fim Navbar -->
 
+    <!-- Inicio Conteúdo -->
     <section id="conteudo">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <form id="form-produto-vendido">
-                        <div class="form-group">
-                            <label for="id">ID: </label>
-                            <input type="text" class="form-control" id="id" name="id" disabled value="Carregando..." required>
-                        </div>
-                        <div class="form-group div-select-produto">
-                            <label for="nome">Nome produto:</label>
-                            <select id='nome' name='nome'>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantidade">Quantidade:</label>
-                            <input type="number" class="form-control" id="quantidade" name="quantidade" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="preco">Preço:</label>
-                            <input type="number" class="form-control" id="preco" name="preco" required>
-                        </div>
-                        <div class="form-group div-select-funcionario">
-                            <label for="funcionario">Funcionário responsável pela Venda:</label>
-                            <select id='funcionario' name='funcionario'>
-                            </select>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Vender</button>
-                        <button type="reset" class="btn btn-primary btn-limpar">Limpar</button>
-                    </form>
+                <div class="col-md-12" id="pagina-lucro">
+                    
                 </div>
+
             </div>
         </div>
     </section>
-
+    <!-- Fim conteúdo -->
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
@@ -107,48 +83,18 @@
     <script type="text/javascript" src="js/venda.js"></script>
     <script type="text/javascript" src="js/estoque.js"></script>
     <script type="text/javascript" src="js/funcionarios.js"></script>
-    
-    
     <script>
         Estoque.inicializar();
         Funcionario.inicializar();
         Venda.inicializar();
 
-        $(".btn-limpar").on("click", function(event){
-            event.preventDefault();
-            $("#form-produto-vendido")[0].reset();
-            $("#id").val(Venda.idVenda);
-        });
-
-
         $(document).ready(function(){
-            $("#id").val(Venda.idVenda);
-            if(Estoque.produtos.length === 0){
-                alert("É necessario ter cadastrado pelo menos um produto no estoque!");
-                location.href = "cadastrar-produto.html";
-            }
-            $("#nome").html(Estoque.getSelectProdutos());
-            $("#funcionario").html(Funcionario.getSelectFuncionarios());
+            Venda.calculaLucroEmpresa();
         });
 
-        $("#form-produto-vendido").on("submit", function(event){
-            event.preventDefault();
-            let dadosFormulario = $(this).serializeArray();
-            let produtoVenda = {
-                id: Venda.idVenda++,
-                nome: dadosFormulario[0].value,
-                quantidade: dadosFormulario[1].value,
-                preco: dadosFormulario[2].value,
-                funcionario: dadosFormulario[3].value,
-            };
-            Venda.adicionarProduto(produtoVenda);
-            Estoque.atualizarProduto(produtoVenda);
-            //Estoque.atualizaProdutosNoEstoque(produtoVenda);
-            alert("Produto vendido com sucesso!");
-        });
-        
+        document.getElementById("pagina-lucro").innerHTML = Venda.getLucro();
+    
     </script>
-
 </body>
 
 </html>
