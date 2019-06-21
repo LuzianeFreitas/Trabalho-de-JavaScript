@@ -78,6 +78,7 @@ const Venda = {
         stringTabela += "</thead>";
 
         stringTabela += "<tbody>";
+      
 
         for(let i = 0; i < this.vendas.length; i++){
             stringTabela += "<tr>";
