@@ -79,6 +79,8 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="js/venda.js"></script>
     <script type="text/javascript" src="js/estoque.js"></script>
     <script type="text/javascript" src="js/funcionarios.js"></script>
@@ -89,7 +91,32 @@
 
         document.getElementById("produto-venda").innerHTML = Venda.listarProdutosVendidos();
 
-        $(".btn-excluir").on("click", function(){
+        $(function(){
+            // event.preventDefault();
+            $('.tablesorter').tablesorter({
+            // Envia os cabeçalhos 
+                headers: { 
+                    0: {
+                        sorter: false 
+                    },
+
+                    1: { 
+                        // Desativa a ordenação para essa coluna 
+                        sorter: false 
+                    },
+
+                    3: {
+                        sorter: false 
+                    },
+
+                    4: {
+                        sorter: false 
+                    }
+                },
+            });
+        });
+
+        $(".btn-excluir").bind("click", function(){
             let resposta = confirm("Deseja realmente excluir esse registro?");
             if(!resposta) return false;
             let id = parseInt($(this).parent().children().text()[0]);

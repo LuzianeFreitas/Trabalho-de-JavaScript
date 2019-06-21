@@ -64,16 +64,16 @@ const Venda = {
     },
 
     listarProdutosVendidos(){
-        let stringTabela = "<table class='table'>";
+        let stringTabela = "<table class='tablesorter table'>";
         stringTabela += "<thead>";
         stringTabela += "<tr>";
         stringTabela += "<th>id</th>";
         stringTabela += "<th>Nome produto</th>";
-        stringTabela += "<th>Quantidade</th>";
+        stringTabela += "<th>Quantidade <i class='fas fa-angle-up'></i></i></th>";
         stringTabela += "<th>Preço</th>";
         stringTabela += "<th>Funcionário</th>";
         stringTabela += "<th></th>";
-        stringTabela += "<th></th>";
+        // stringTabela += "<th></th>";
         stringTabela += "</tr>";
         stringTabela += "</thead>";
 
@@ -87,8 +87,8 @@ const Venda = {
             stringTabela += "<td>" + this.vendas[i].quantidade + "</td>";
             stringTabela += "<td>" + this.vendas[i].preco + "</td>";
             stringTabela += "<td>" + this.vendas[i].funcionario + "</td>";
-            stringTabela += "<td class='btn-editar'>Editar</td>";
-            stringTabela += "<td class='btn-excluir'>Excluir</td>";
+            // stringTabela += "<td class='btn-editar'><i class='fas fa-edit'></i></td>";
+            stringTabela += "<td class='btn-excluir'><i class='fas fa-trash'></i></td>";
             stringTabela += "</tr>";
         }
         stringTabela += "</tbody>";
