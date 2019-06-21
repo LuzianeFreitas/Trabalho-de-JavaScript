@@ -2,14 +2,14 @@ var atualiza;
 window.addEventListener("load", function(){
 
     $('.verificaLogin').click(function(){
-
-        // Falta colocar a cor vermelha na msg
+        
         if(document.getElementById('inputEmail').value != 'admin'){
-            atualiza = "<label for='inputEmail' class='label-invisivel'>Email</label><input type='email' id='inputEmail' class='form-control' placeholder='Usuario incorreto' autofocus>";
-            document.getElementById('verificacaoEmail').innerHTML = atualiza;
+            atualiza = "<div style='visibility: visible; color: red;' id='esconde-div'><label>Email invalido</label></div>";
+            //atualiza = "<label for='inputEmail' class='label-invisivel'>Email</label><input type='email' id='inputEmail' class='form-control' placeholder='Usuario incorreto' autofocus>";
+            document.getElementById('esconde-div').innerHTML = atualiza;
         }else if(document.getElementById('inputPassword').value != 'admin'){
-            atualiza = '<label for="inputPassword" class="label-invisivel">Senha</label><input type="password" id="inputPassword" class="form-control" placeholder="Senha incorreta">';
-            document.getElementById('verificacao').innerHTML = atualiza;
+            atualiza = "<div style='visibility: visible; color: red;' id='esconde-div'><label>Senha invalido</label></div>";
+            document.getElementById('esconde-div').innerHTML = atualiza;
         }else if((document.getElementById('inputEmail').value == 'admin') && (document.getElementById('inputPassword').value == 'admin')){
             window.open('inicio.html','janela');
         }
