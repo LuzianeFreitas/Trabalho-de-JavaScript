@@ -113,9 +113,11 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/funcionarios.js"></script>
 <script type="text/javascript" src="js/estoque.js"></script>
+<script type="text/javascript" src="js/venda.js"></script>
 <script>
 	Estoque.inicializar();
 	Funcionario.inicializar();
+	Venda.inicializar();
 
     $(".btn-limpar").on("click", function(event){
         event.preventDefault();
@@ -144,9 +146,18 @@
 		    preco: dadosForm[4].value,
 		    funcionarioCadastro: dadosForm[5].value,
 		};
-		Estoque.adicionarProduto(produto);
+		if(Estoque.validaDataDeValidade()){
+			Estoque.adicionarProduto(produto);
+			alert("Produto Cadastrado com Sucesso!");
+		}else{
 
-		alert("Produto Cadastrado com Sucesso!");
+			Estoque.calculaPerda(produto);
+			Venda.calculaLucroEmpresa();
+			alert("Data de validade excedida! Produto adicionado a perdas.!");
+		}
+		
+
+		
 	});
 </script>
 </body>

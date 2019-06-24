@@ -141,10 +141,18 @@
                 preco: dadosFormulario[2].value,
                 funcionario: dadosFormulario[3].value,
             };
-            Venda.adicionarProduto(produtoVenda);
-            Estoque.atualizarProduto(produtoVenda);
+            if(Estoque.atualizarProduto(produtoVenda)){
+                Venda.adicionarProduto(produtoVenda);
+                Venda.calculaLucroEmpresa();
+                alert("Produto vendido com sucesso!");
+            }else{
+                alert("Entre com um valor de quantidade disponível no estoque!");
+            }
+            
+            
+            
             //Estoque.atualizaProdutosNoEstoque(produtoVenda);
-            alert("Produto vendido com sucesso!");
+            
         });
         
     </script>

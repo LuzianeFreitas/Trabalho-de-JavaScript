@@ -1,6 +1,7 @@
 const Estoque = {
     idProduto: 1,
     produtos: [],
+    perda: 0,
 
     inicializar(){
         if(localStorage.getItem("produtos") != null){
@@ -12,6 +13,7 @@ const Estoque = {
     carregarAtributosDoLocalStorage(){
         this.produtos = JSON.parse(localStorage.getItem("produtos"));
         this.idProduto = JSON.parse(localStorage.getItem("idProduto"));
+        this.perda = JSON.parse(localStorage.getItem("perda"));
 
         return true;
     },
@@ -19,6 +21,7 @@ const Estoque = {
     salvarAtributosNoLocalStorage(){
         localStorage.setItem("produtos", JSON.stringify(this.produtos));
         localStorage.setItem("idProduto", JSON.stringify(this.idProduto));
+        localStorage.setItem("perda", JSON.stringify(this.perda));
 
         return true;
     },
@@ -44,9 +47,14 @@ const Estoque = {
     atualizarProduto(produto){
         for(let i = 0; i < this.produtos.length; i++){
             if(this.produtos[i].nome === produto.nome){
-                this.produtos[i].quantidade -= produto.quantidade;
-                this.salvarAtributosNoLocalStorage();
-                return true;
+                if(this.produtos[i].quantidade >= produto.quantidade ){
+                    this.produtos[i].quantidade -= produto.quantidade;
+                    this.salvarAtributosNoLocalStorage();
+                    return true;
+                }else{
+                    return false;
+                }
+                
             }
         }
         return false;
@@ -96,6 +104,7 @@ const Estoque = {
             stringTabela += "<td>" + this.produtos[i].id + "</td>";
             stringTabela += "<td>" + this.produtos[i].nome + "</td>";
             dataDeValidade = new Date(this.produtos[i].dataDeValidade);
+            //console.log(this.produtos[i].dataDeValidade);
             dataDeValidade = (dataDeValidade.getDate() + 1) + '/' +
                 (dataDeValidade.getMonth() + 1) + '/' +  dataDeValidade.getFullYear();
             stringTabela += "<td>" + dataDeValidade + "</td>";
@@ -109,8 +118,62 @@ const Estoque = {
         }
         stringTabela += "</tbody>";
         stringTabela += "</table>";
-
+        
         return stringTabela;
+    },
+
+    validaDataDeValidade(){
+        let dataAtual = new Date();
+        let dia = parseInt(dataAtual.getDate());
+        let mes = parseInt(dataAtual.getMonth() + 1);
+        let ano = parseInt(dataAtual.getFullYear());
+        let dataDigitada;
+        let dataDigitadaConvertida;
+        let validaData = 1;
+        //console.log(mes);
+        //dataDigitadaConvertida[0]) -> Ano
+        //dataDigitadaConvertida[1]) -> Mes
+        //dataDigitadaConvertida[2] -> Dia
+        for(let i = 0; i < this.produtos.length; i++){
+            dataDigitada = this.produtos[i].dataDeValidade;
+            dataDigitada = dataDigitada.toString();
+            dataDigitadaConvertida = dataDigitada.split("-");
+
+            //Verifica se possui ano e dia valido
+            if((parseInt(dataDigitadaConvertida[0]) > 0 && parseInt(dataDigitadaConvertida[0]) <= 12) && (parseInt(dataDigitadaConvertida[2]) > 0 && parseInt(dataDigitadaConvertida[2]) <= 31)){
+               if(parseInt(dataDigitadaConvertida[0]) > ano){
+                    validaData = 1;
+               }else if(parseInt(dataDigitadaConvertida[0]) == ano){
+                    if(parseInt(dataDigitadaConvertida[1]) > mes){
+                        validaData = 1;
+                    }else if(parseInt(dataDigitadaConvertida[1]) == mes){
+                        if(parseInt(dataDigitadaConvertida[2]) > dia){
+                            validaData = 1;
+                        }else{
+                        validaData = 0;
+                        }
+                    }else{
+                        validaData = 0;
+                    }
+               }else{
+                validaData = 0;
+               }
+            }else{
+                validaData = 0;
+            }
+        }
+
+        return validaData;
+    },
+
+    calculaPerda(perdas){
+        
+        this.perda = 0;
+        for(let i = 0; i < perdas.length; i++){            
+            this.perda += (parseInt(perdas[i].quantidade) * parseInt(perdas[i].preco));     
+        }
+        this.salvarAtributosNoLocalStorage();
+        return true;
     },
 
     getSelectProdutos(){

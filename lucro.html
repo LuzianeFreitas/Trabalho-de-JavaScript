@@ -89,10 +89,12 @@
         Venda.inicializar();
 
         $(document).ready(function(){
-            Venda.calculaLucroEmpresa();
+            
+            document.getElementById("pagina-lucro").innerHTML = Venda.getLucro();
         });
 
-        document.getElementById("pagina-lucro").innerHTML = Venda.getLucro();
+        
+        
     
     </script>
 </body>

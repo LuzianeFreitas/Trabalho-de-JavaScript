@@ -33,20 +33,11 @@ const Venda = {
         return true;
     },
 
-    removerVenda(id){
-        for(let i = 0; i < this.vendas.length; i++){
-            if(this.vendas[i].id === id){
-                this.vendas.splice(i, 1);
-                this.salvarAtributosNoLocalStorage();
-                return true;
-            }
-        }
-        return false;
-    },
-
     calculaLucroEmpresa(){
-        for(let i = 0; i < this.vendas.length; i++){
-            this.lucro = ((this.vendas[i].quantidade) * (this.vendas[i].preco));
+        let produto = JSON.parse(localStorage.getItem("produtos"));    
+        let perdas =  JSON.parse(localStorage.getItem("perda")); 
+        for(let i = 0, j = 0; i < this.vendas.length, j < produto.length; i++, j++){
+            this.lucro += ((this.vendas[i].quantidade) * (this.vendas[i].preco)) - ((produto[j].taxaDeImposto) + perdas);
             this.salvarAtributosNoLocalStorage();
             return true;
         }
@@ -72,7 +63,7 @@ const Venda = {
         stringTabela += "<th>Quantidade <i class='fas fa-angle-up'></i></i></th>";
         stringTabela += "<th>Preço</th>";
         stringTabela += "<th>Funcionário</th>";
-        stringTabela += "<th></th>";
+        //stringTabela += "<th></th>";
         // stringTabela += "<th></th>";
         stringTabela += "</tr>";
         stringTabela += "</thead>";
@@ -88,7 +79,7 @@ const Venda = {
             stringTabela += "<td>" + this.vendas[i].preco + "</td>";
             stringTabela += "<td>" + this.vendas[i].funcionario + "</td>";
             // stringTabela += "<td class='btn-editar'><i class='fas fa-edit'></i></td>";
-            stringTabela += "<td class='btn-excluir'><i class='fas fa-trash'></i></td>";
+            //stringTabela += "<td class='btn-excluir'><i class='fas fa-trash'></i></td>";
             stringTabela += "</tr>";
         }
         stringTabela += "</tbody>";
