@@ -138,31 +138,38 @@ const Estoque = {
             dataDigitada = this.produtos[i].dataDeValidade;
             dataDigitada = dataDigitada.toString();
             dataDigitadaConvertida = dataDigitada.split("-");
-
+            
+            
             //Verifica se possui ano e dia valido
-            if((parseInt(dataDigitadaConvertida[0]) > 0 && parseInt(dataDigitadaConvertida[0]) <= 12) && (parseInt(dataDigitadaConvertida[2]) > 0 && parseInt(dataDigitadaConvertida[2]) <= 31)){
-               if(parseInt(dataDigitadaConvertida[0]) > ano){
+            if((parseInt(dataDigitadaConvertida[1]) > 0 && parseInt(dataDigitadaConvertida[1]) <= 12) && (parseInt(dataDigitadaConvertida[2]) > 0 && parseInt(dataDigitadaConvertida[2]) <= 31)){
+                
+                if(parseInt(dataDigitadaConvertida[0]) > ano){
                     validaData = 1;
                }else if(parseInt(dataDigitadaConvertida[0]) == ano){
                     if(parseInt(dataDigitadaConvertida[1]) > mes){
+                        
                         validaData = 1;
                     }else if(parseInt(dataDigitadaConvertida[1]) == mes){
                         if(parseInt(dataDigitadaConvertida[2]) > dia){
                             validaData = 1;
                         }else{
+                          
                         validaData = 0;
                         }
                     }else{
+                        
                         validaData = 0;
                     }
                }else{
+                
                 validaData = 0;
                }
             }else{
+                
                 validaData = 0;
             }
         }
-
+        
         return validaData;
     },
 
